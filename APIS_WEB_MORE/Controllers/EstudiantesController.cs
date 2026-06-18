@@ -54,5 +54,19 @@ namespace APIS_WEB_MORE.Controllers
 
             return Ok(estudiante);
         }
+
+        // POST: api/estudiantes
+        [HttpPost]
+        public ActionResult<Estudiante> Create(Estudiante estudiante)
+        {
+            estudiante.Id = estudiantes.Max(e => e.Id) + 1;
+
+            estudiantes.Add(estudiante);
+
+            return CreatedAtAction(
+                nameof(GetById),
+                new { id = estudiante.Id },
+                estudiante);
+        }
     }
 }

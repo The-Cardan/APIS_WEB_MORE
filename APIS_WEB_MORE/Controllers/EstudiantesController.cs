@@ -108,5 +108,17 @@ namespace APIS_WEB_MORE.Controllers
 
             return NoContent();
         }
+
+        // GET: api/estudiantes/buscar?texto
+        [HttpGet("buscar")]
+        public ActionResult<IEnumerable<Estudiante>> Buscar(string texto)
+        {
+            var resultado = estudiantes.Where(e =>
+                e.Nombre.Contains(texto, StringComparison.OrdinalIgnoreCase)
+                ||
+                e.Apellido.Contains(texto, StringComparison.OrdinalIgnoreCase));
+
+            return Ok(resultado);
+        }
     }
 }

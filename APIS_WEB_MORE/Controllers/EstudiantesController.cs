@@ -40,5 +40,19 @@ namespace APIS_WEB_MORE.Controllers
         {
             return Ok(estudiantes);
         }
+
+        // GET: api/estudiantes/{id}
+        [HttpGet("{id}")]
+        public ActionResult<Estudiante> GetById(int id)
+        {
+            var estudiante = estudiantes.FirstOrDefault(e => e.Id == id);
+
+            if (estudiante == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(estudiante);
+        }
     }
 }

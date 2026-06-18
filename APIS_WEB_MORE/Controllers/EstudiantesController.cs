@@ -68,5 +68,28 @@ namespace APIS_WEB_MORE.Controllers
                 new { id = estudiante.Id },
                 estudiante);
         }
+
+
+        // PUT: api/estudiantes/{id}
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, Estudiante estudianteActualizado)
+        {
+            var estudiante = estudiantes.FirstOrDefault(e => e.Id == id);
+
+            if (estudiante == null)
+            {
+                return NotFound();
+            }
+
+            estudiante.Nombre = estudianteActualizado.Nombre;
+            estudiante.Apellido = estudianteActualizado.Apellido;
+            estudiante.Correo = estudianteActualizado.Correo;
+            estudiante.Carrera = estudianteActualizado.Carrera;
+            estudiante.Edad = estudianteActualizado.Edad;
+            estudiante.Promedio = estudianteActualizado.Promedio;
+            estudiante.Activo = estudianteActualizado.Activo;
+
+            return NoContent();
+        }
     }
 }

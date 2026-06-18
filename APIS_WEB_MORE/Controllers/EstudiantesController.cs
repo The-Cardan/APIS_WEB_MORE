@@ -33,5 +33,12 @@ namespace APIS_WEB_MORE.Controllers
                 Activo = true
             }
         };
+
+        // GET: api/estudiantes
+        [HttpGet]
+        public ActionResult<IEnumerable<Estudiante>> GetAll()
+        {
+            return Ok(estudiantes);
+        }
     }
 }

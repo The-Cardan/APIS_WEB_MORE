@@ -91,5 +91,22 @@ namespace APIS_WEB_MORE.Controllers
 
             return NoContent();
         }
+
+
+        // DELETE: api/estudiantes/{id}
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var estudiante = estudiantes.FirstOrDefault(e => e.Id == id);
+
+            if (estudiante == null)
+            {
+                return NotFound();
+            }
+
+            estudiantes.Remove(estudiante);
+
+            return NoContent();
+        }
     }
 }

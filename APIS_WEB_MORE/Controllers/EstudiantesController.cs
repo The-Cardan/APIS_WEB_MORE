@@ -24,6 +24,17 @@ namespace APIS_WEB_MORE.Controllers
             new Estudiante
             {
                 Id = 2,
+                Nombre = "Carlos",
+                Apellido = "Morillo",
+                Correo = "carlitos@ufhec.edu.do",
+                Carrera = "Ingenieria de Sistemas",
+                Edad = 25,
+                Promedio = 92,
+                Activo = true
+            },
+            new Estudiante
+            {
+                Id = 3,
                 Nombre = "Ana",
                 Apellido = "Perez",
                 Correo = "ana@ufhec.edu.do",
@@ -31,7 +42,18 @@ namespace APIS_WEB_MORE.Controllers
                 Edad = 20,
                 Promedio = 80,
                 Activo = true
-            }
+            },
+            new Estudiante
+            {
+                Id = 4,
+                Nombre = "Nairoby",
+                Apellido = "Encarnacion",
+                Correo = "Nai@ufhec.edu.do",
+                Carrera = "Contabilidad",
+                Edad = 18,
+                Promedio = 60,
+                Activo = true
+            },
         };
 
         // GET: api/estudiantes
@@ -117,6 +139,18 @@ namespace APIS_WEB_MORE.Controllers
                 e.Nombre.Contains(texto, StringComparison.OrdinalIgnoreCase)
                 ||
                 e.Apellido.Contains(texto, StringComparison.OrdinalIgnoreCase));
+
+            return Ok(resultado);
+        }
+
+        //  GET: api/estudiantes/carrera
+
+        [HttpGet("carrera/{carrera}")]
+        public ActionResult<IEnumerable<Estudiante>> Carrera(string carrera)
+        {
+            var resultado = estudiantes.Where(e =>
+                e.Carrera.Equals(carrera,
+                StringComparison.OrdinalIgnoreCase));
 
             return Ok(resultado);
         }

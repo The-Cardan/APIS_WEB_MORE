@@ -54,6 +54,51 @@ namespace APIS_WEB_MORE.Controllers
                 Promedio = 60,
                 Activo = true
             },
+
+            new Estudiante
+            {
+                Id = 5,
+                Nombre = "Ronal",
+                Apellido = "De OLeo",
+                Correo = "Ron@ufhec.edu.do",
+                Carrera = "Educacion Fisica",
+                Edad = 26,
+                Promedio = 69,
+                Activo = true
+            },
+            new Estudiante
+            {
+                Id = 6,
+                Nombre = "Octanny",
+                Apellido = "Montero",
+                Correo = "Otis@ufhec.edu.do",
+                Carrera = "Ingenieria Civil",
+                Edad = 20,
+                Promedio = 88,
+                Activo = true
+            },
+            new Estudiante
+            {
+                Id = 7,
+                Nombre = "Ronaisy",
+                Apellido = "Cuevas",
+                Correo = "Ronay@ufhec.edu.do",
+                Carrera = "Ciencias Forenses",
+                Edad = 28,
+                Promedio = 58,
+                Activo = true
+            },
+            new Estudiante
+            {
+                Id = 8,
+                Nombre = "Andy",
+                Apellido = "Montez",
+                Correo = "monteandy@ufhec.edu.do",
+                Carrera = "Contabilidad",
+                Edad = 42,
+                Promedio = 95,
+                Activo = true
+            },
         };
 
         // GET: api/estudiantes
@@ -151,6 +196,16 @@ namespace APIS_WEB_MORE.Controllers
             var resultado = estudiantes.Where(e =>
                 e.Carrera.Equals(carrera,
                 StringComparison.OrdinalIgnoreCase));
+
+            return Ok(resultado);
+        }
+
+        //GET: api/estudiantes/promedio?
+        [HttpGet("aprobados")]
+        public ActionResult<IEnumerable<Estudiante>> Aprobados(decimal promedioMinimo = 70)
+        {
+            var resultado = estudiantes.Where(e =>
+                e.Promedio >= promedioMinimo);
 
             return Ok(resultado);
         }

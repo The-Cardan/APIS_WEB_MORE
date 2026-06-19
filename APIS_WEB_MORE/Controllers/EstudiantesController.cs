@@ -209,5 +209,41 @@ namespace APIS_WEB_MORE.Controllers
 
             return Ok(resultado);
         }
+
+
+        // GET: api/estudiantes por ordenamiento
+        [HttpGet("ordenar")]
+        public ActionResult<IEnumerable<Estudiante>> Ordenar(
+    string por,
+    string direccion = "asc")
+        {
+            IEnumerable<Estudiante> resultado = estudiantes;
+
+            switch (por.ToLower())
+            {
+                case "nombre":
+                    resultado = direccion.ToLower() == "desc"
+                        ? estudiantes.OrderByDescending(e => e.Nombre)
+                        : estudiantes.OrderBy(e => e.Nombre);
+                    break;
+
+                case "promedio":
+                    resultado = direccion.ToLower() == "desc"
+                        ? estudiantes.OrderByDescending(e => e.Promedio)
+                        : estudiantes.OrderBy(e => e.Promedio);
+                    break;
+
+                case "edad":
+                    resultado = direccion.ToLower() == "desc"
+                        ? estudiantes.OrderByDescending(e => e.Edad)
+                        : estudiantes.OrderBy(e => e.Edad);
+                    break;
+
+                default:
+                    return BadRequest("Campo de ordenamiento inválido.");
+            }
+
+            return Ok(resultado);
+        }
     }
 }

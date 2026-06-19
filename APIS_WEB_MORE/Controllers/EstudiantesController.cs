@@ -302,6 +302,15 @@ namespace APIS_WEB_MORE.Controllers
 
             return NoContent();
         }
+
+        // GET: api/estudiantes/activos
+        [HttpGet("activos")]
+        public ActionResult<IEnumerable<Estudiante>> Activos()
+        {
+            var resultado = estudiantes.Where(e => e.Activo);
+
+            return Ok(resultado);
+        }
     }
 }
 

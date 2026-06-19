@@ -258,5 +258,33 @@ namespace APIS_WEB_MORE.Controllers
 
             return Ok(resultado);
         }
+
+        // GET: api/estudiantes/estadisticas
+        [HttpGet("estadisticas")]
+        public IActionResult Estadisticas()
+        {
+            var total = estudiantes.Count;
+
+            var aprobados = estudiantes.Count(e => e.Promedio >= 70);
+
+            var reprobados = estudiantes.Count(e => e.Promedio < 70);
+
+            var promedioGeneral = estudiantes.Average(e => e.Promedio);
+
+            var mejorPromedio = estudiantes.Max(e => e.Promedio);
+
+            var peorPromedio = estudiantes.Min(e => e.Promedio);
+
+            return Ok(new
+            {
+                Total = total,
+                Aprobados = aprobados,
+                Reprobados = reprobados,
+                PromedioGeneral = promedioGeneral,
+                MejorPromedio = mejorPromedio,
+                PeorPromedio = peorPromedio
+            });
+        }
     }
 }
+

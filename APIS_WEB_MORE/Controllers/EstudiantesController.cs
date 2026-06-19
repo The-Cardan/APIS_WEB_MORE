@@ -285,6 +285,23 @@ namespace APIS_WEB_MORE.Controllers
                 PeorPromedio = peorPromedio
             });
         }
+
+        // PUT: api/estudiantes/{id}/estado
+
+        [HttpPut("{id}/estado")]
+        public IActionResult CambiarEstado(int id, bool activo)
+        {
+            var estudiante = estudiantes.FirstOrDefault(e => e.Id == id);
+
+            if (estudiante == null)
+            {
+                return NotFound();
+            }
+
+            estudiante.Activo = activo;
+
+            return NoContent();
+        }
     }
 }
 

@@ -245,5 +245,18 @@ namespace APIS_WEB_MORE.Controllers
 
             return Ok(resultado);
         }
+        // GET: api/estudiantes por rango de promedio
+
+        [HttpGet("rango")]
+        public ActionResult<IEnumerable<Estudiante>> Rango(
+    decimal promedioDesde,
+    decimal promedioHasta)
+        {
+            var resultado = estudiantes.Where(e =>
+                e.Promedio >= promedioDesde &&
+                e.Promedio <= promedioHasta);
+
+            return Ok(resultado);
+        }
     }
 }
